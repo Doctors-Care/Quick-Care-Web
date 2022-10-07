@@ -24,6 +24,7 @@ function LogInPage() {
 	let [created, setCreated] = useState(false);
 
   let navigate = useNavigate()
+  
 
   const handleJustifyClick = (value) => {
     if (value === justifyActive) {

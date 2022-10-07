@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 import { Link} from 'react-router-dom'
-import moment from "moment"
+// import moment from "moment"
  import image from "../../public/9f657f1478c95c75f42b647b00fa7146.png";
  import pic from "../../public/Automation-In-Healthcare-Achieving-Operational-Efficiency-At-Scale-blog-feature-nvd.jpg"
 function HomePage (){
-let navigate = useNavigate()
+
 return (<>
 <div className="container-fluid sticky-top bg-white shadow-sm">
         <div className="container">
