@@ -13,7 +13,7 @@ import {
 }
 from 'mdb-react-ui-kit';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 function LogInPage() {
 
   const [justifyActive, setJustifyActive] = useState('tab1');
@@ -50,12 +50,17 @@ function LogInPage() {
 }
 let register = (account) => {
 	 axios.post('http://localhost:3000/hce/add',  account )
-	 .then((result)=> { if (result.data === "registred") {
+	 .then((result)=> { 
+    console.log(result)
+    if (result.data === "registred") {
 		setCreated(true)
+    navigate("/accountValidation",{state:account})
 		  }
 
 	})
-		.catch((err) => setExisting(true))
+		.catch((err) => {
+      console.log(err);
+      setExisting(true)})
 }
 
   return (
