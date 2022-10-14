@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import {
   MDBContainer,
   MDBTabs,
@@ -34,11 +34,12 @@ function LogInPage() {
     setJustifyActive(value);
   };
   let loggingIn = (account) => {
-	console.log(account)
-	 axios.post('/api/login',  account )
-	 .then((result)=> { 
+    console.log(account)
+    axios.post('http://localhost:3000/hce/signin',  account)
+    .then((result)=> { 
+      console.log(result)
 		 if (result.data === "allowed") {
-			 navigate("/homePage")
+			 navigate("/homePage",{state:account})
 			   }
 	
 			  else {setDenied(true) }
@@ -48,8 +49,7 @@ function LogInPage() {
 		.catch((err) => console.log(err))
 }
 let register = (account) => {
-	console.log(account);
-	 axios.post('/api/register',  account )
+	 axios.post('http://localhost:3000/hce/add',  account )
 	 .then((result)=> { if (result.data === "registred") {
 		setCreated(true)
 		  }
@@ -59,6 +59,7 @@ let register = (account) => {
 }
 
   return (
+    <>
 	<div>
 	<h1>Quick Care..</h1>
 	<br/>
@@ -107,7 +108,6 @@ let register = (account) => {
           </div>
 
           <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'onChange={((event) => setState(prevState => { return { ...prevState, email: event.target.value } }))}/>
-          {existing && <div className="error">You're already registred </div>}
 		  <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'onChange={((event) => setState(prevState => { return { ...prevState, password: event.target.value } }))}/>
 		  <div>
 							{denied && <div className="error">Access Denied </div>}
@@ -117,7 +117,7 @@ let register = (account) => {
             <a href="!#">Forgot password?</a>
           </div>
 
-          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(), loggingIn(state)})}>Sign in</MDBBtn>
+          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(); loggingIn(state)})}>Sign in</MDBBtn>
           
 
         </MDBTabsPane>
@@ -147,6 +147,8 @@ let register = (account) => {
 
           <MDBInput wrapperClass='mb-4' label="Hospital's Name" id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, name: event.target.value } }))}/>
           <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email' onChange={((event) => setState(prevState => { return { ...prevState, email: event.target.value } }, setExisting(false)))}/>
+          {existing && <div className="error">You're already registred </div>}
+
           <MDBInput wrapperClass='mb-4' label='Adress' id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, address: event.target.value } }, setExisting(false)))}/>
           <MDBInput wrapperClass='mb-4' label='Phone Number' id='form1' type='number'onChange={((event) => setState(prevState => { return { ...prevState, phoneNumber: event.target.value } }))}/>
           <MDBInput wrapperClass='mb-4' label='License Number' id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, licenseNumber: event.target.value } }))}/>
@@ -161,7 +163,7 @@ let register = (account) => {
             <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
           </div>
 
-          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(), register(state)})}>Sign up</MDBBtn>
+          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(); register(state)})}>Sign up</MDBBtn>
 
         </MDBTabsPane>
 
@@ -170,6 +172,7 @@ let register = (account) => {
     </MDBContainer>
 	</div>
 	</div>
+  </>
   );
 }
 

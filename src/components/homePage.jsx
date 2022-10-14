@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { Link} from 'react-router-dom'
 // import moment from "moment"
- import image from "../../public/9f657f1478c95c75f42b647b00fa7146.png";
- import pic from "../../public/Automation-In-Healthcare-Achieving-Operational-Efficiency-At-Scale-blog-feature-nvd.jpg"
-function HomePage (){
+ import image from "../9f657f1478c95c75f42b647b00fa7146.png";
+ import pic from "../Automation-In-Healthcare-Achieving-Operational-Efficiency-At-Scale-blog-feature-nvd.jpg"
 
+
+function HomePage (){
+const location = useLocation()
+useEffect(()=>console.log(location))
 return (<>
 <div className="container-fluid sticky-top bg-white shadow-sm">
         <div className="container">
@@ -27,10 +30,10 @@ return (<>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
                     <Link to="/homePage" className="nav-item nav-link active">Home</Link>
-                        <Link to="/requests" className="nav-item nav-link">Active requests</Link>
-                        <Link to="/history" className="nav-item nav-link">History</Link>
-                        <Link to="/Contact" className="nav-item nav-link">Contact Us</Link>
-                        <Link to="/" className="nav-item nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
+                        <Link to="/requests" state={location.state} className="nav-item nav-link ">Active requests</Link>
+                        <Link to="/history" className="nav-item nav-link ">History</Link>
+                        <Link to="/Contact" className="nav-item nav-link ">Contact Us</Link>
+                        <Link to="/" className="nav-item nav-link "><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
                 </div>
             </nav>
@@ -42,7 +45,8 @@ return (<>
         <div className="container py-5">
             <div className="row justify-content-start">
                 <div className="col-lg-8 text-center text-lg-start">
-                    <h5 className="d-inline-block text-primary text-uppercase border-bottom border-5">Welcome To Quick Care</h5>
+                <img className="position-relative  rounded" src={pic} />
+                    <h5 className="d-inline-block text-white text-uppercase border-bottom border-5">Welcome To Quick Care</h5>
                     <h1 className="display-1 text-white mb-md-4">We Believe that everyone Have Right to Great HealthCare</h1>
                     <div className="pt-2">
                        
