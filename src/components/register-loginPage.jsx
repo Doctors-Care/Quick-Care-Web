@@ -35,7 +35,7 @@ function LogInPage() {
   };
   let loggingIn = (account) => {
     console.log(account)
-    axios.post('http://localhost:3000/hce/signin',  account)
+    axios.post('http://localhost:3001/hce/signin',  account)
     .then((result)=> { 
       console.log(result)
 		 if (result.data === "allowed") {
@@ -49,9 +49,9 @@ function LogInPage() {
 		.catch((err) => console.log(err))
 }
 let register = (account) => {
-	 axios.post('http://localhost:3000/hce/add',  account )
+	 axios.post('http://localhost:3001/hce/add',  account )
 	 .then((result)=> { 
-    console.log(result)
+    console.log(result.data)
     if (result.data === "registred") {
 		setCreated(true)
     navigate("/accountValidation",{state:account})
@@ -150,22 +150,25 @@ let register = (account) => {
             </div>
           </div>
 
-          <MDBInput wrapperClass='mb-4' label="Hospital's Name" id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, name: event.target.value } }))}/>
-          <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email' onChange={((event) => setState(prevState => { return { ...prevState, email: event.target.value } }, setExisting(false)))}/>
+          <MDBInput wrapperClass='mb-4' label="Hospital's Name" id='form1' type='text' required onChange={((event) => setState(prevState => { return { ...prevState, name: event.target.value } }))}/>
+          <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email'required onChange={((event) => setState(prevState => { return { ...prevState, email: event.target.value } }, setExisting(false)))}/>
           {existing && <div className="error">You're already registred </div>}
 
-          <MDBInput wrapperClass='mb-4' label='Adress' id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, address: event.target.value } }, setExisting(false)))}/>
-          <MDBInput wrapperClass='mb-4' label='Phone Number' id='form1' type='number'onChange={((event) => setState(prevState => { return { ...prevState, phoneNumber: event.target.value } }))}/>
-          <MDBInput wrapperClass='mb-4' label='License Number' id='form1' type='text' onChange={((event) => setState(prevState => { return { ...prevState, licenseNumber: event.target.value } }))}/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'onChange={((event) => setState(prevState => { return { ...prevState, password: event.target.value } }))}/>
-          <MDBInput wrapperClass='mb-4' label='Confirm Password' id='form1' type='password'onChange={((event) => setConfirmPassword (event.target.value)  )}/>
+          <MDBInput wrapperClass='mb-4' label='Adress' id='form1' type='text' required onChange={((event) => setState(prevState => { return { ...prevState, address: event.target.value } }, setExisting(false)))}/>
+          <MDBInput wrapperClass='mb-4' label='Phone Number' id='form1' type='number' required onChange={((event) => setState(prevState => { return { ...prevState, phoneNumber: event.target.value } }))}/>
+          <MDBInput wrapperClass='mb-4' label='License Number' id='form1' type='text' required onChange={((event) => setState(prevState => { return { ...prevState, licenseNumber: event.target.value } }))}/>
+          <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'required onChange={((event) => setState(prevState => { return { ...prevState, password: event.target.value } }))}/>
+          <MDBInput wrapperClass='mb-4' label='Confirm Password' id='form1' type='password'required onChange={((event) => setConfirmPassword (event.target.value)  )}/>
 		  <div>
 		{state.password !== confirmPassword && <div id='error'> Incorrect Password </div>}
 		{created && <div id='succes'>You Have Been Registred </div>}
 			</div>
 
           <div className='d-flex justify-content-center mb-4'>
-            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
+            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' required/>
+             <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Check this checkbox to continue.</div>
+
           </div>
 
           <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(); register(state)})}>Sign up</MDBBtn>

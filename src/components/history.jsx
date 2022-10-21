@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import axios from "axios";
 import image from "../9f657f1478c95c75f42b647b00fa7146.png";
 import {Link} from"react-router-dom";
+import axios from "axios";
+import moment from "moment/moment";
 function History(){
-  
+  const [requests, setRequests] = useState([])
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/request/getAll")
+      .then((result) => {
+        
+          setRequests(result.data)
+            
+          
+        })
+      .catch((err) => console.log(err));
+  }, []);
 return (
     <>
 
@@ -41,30 +54,22 @@ return (
     <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
     </tr>
   </thead>
   <tbody>
+  {requests.map((request)=>{return(
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{request.patient.firstName}</td>
+      <td>{request.patient.lastName}</td>
+      <td>---</td>
+      <td>{ moment(request.createdAt).format("LL")}</td>
+      
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+   ) })}
   </tbody>
 </table>
 
