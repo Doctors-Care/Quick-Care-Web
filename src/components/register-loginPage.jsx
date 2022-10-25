@@ -17,7 +17,7 @@ import { useNavigate, useNavigation } from "react-router-dom";
 function LogInPage() {
 
   const [justifyActive, setJustifyActive] = useState('tab1');
-  let [state, setState] = useState({email: "",name:"", password: "",address:"",phoneNumber:"",licenseNumber:"" });
+  let [state, setState] = useState({email: "",name:"", password: "",adress:"",phoneNumber:"",licenseNumber:"" });
 	let[confirmPassword, setConfirmPassword] = useState("");
 	let [denied, setDenied] = useState(false);
 	let [existing, setExisting] = useState(false);
@@ -38,7 +38,7 @@ function LogInPage() {
     axios.post('http://localhost:3001/hce/signin',  account)
     .then((result)=> { 
       console.log(result)
-		 if (result.data === "allowed") {
+		 if (result.statusText === "Accepted") {
 			 navigate("/homePage",{state:account})
 			   }
 	
@@ -59,8 +59,9 @@ let register = (account) => {
 
 	})
 		.catch((err) => {
-      console.log(err);
-      setExisting(true)})
+      // console.log(err);
+      setExisting(true)
+    })
 }
 
   return (
