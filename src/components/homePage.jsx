@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
+ import axios from "axios";
 import {  useLocation } from "react-router-dom";
 import { Link} from 'react-router-dom'
 // import moment from "moment"
@@ -33,7 +33,7 @@ return (<>
                         <Link to="/requests" state={location.state} className="nav-item nav-link ">Active requests</Link>
                         <Link to="/history" className="nav-item nav-link ">History</Link>
                         <Link to="/Contact" className="nav-item nav-link ">Contact Us</Link>
-                        <Link to="/" className="nav-item nav-link "><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
+                        <Link to="/" className="nav-item nav-link " onClick={()=>{axios.get("http://127.0.0.1:3001/hce/logout")}}><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
                 </div>
             </nav>

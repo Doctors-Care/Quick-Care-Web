@@ -19,7 +19,7 @@ function CodeValidation() {
  
   let loggingIn = (account) => {
     console.log(account)
-    axios.post('http://localhost:3000/hce/accountconfirmation',  account)
+    axios.post('http://localhost:3001/hce/accountconfirmation',  account)
     .then((result)=> { 
       console.log(result)
 		 if (result.data === "allowed") {
