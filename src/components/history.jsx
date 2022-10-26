@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import axios from "axios";
-import image from "../../public/9f657f1478c95c75f42b647b00fa7146.png";
-import {Link} from"react-router-dom";
+import image from "../9f657f1478c95c75f42b647b00fa7146.png";
+import {Link, useLocation} from"react-router-dom";
+import axios from "axios";
+import moment from "moment/moment";
 function History(){
+  const location = useLocation()
+  const [requests, setRequests] = useState([])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/request/getAll/${location.state.id}`)
+      .then((result) => {
+        
+          setRequests(result.data)
+            
+          
+        })
+      .catch((err) => console.log(err));
+  }, []);
 return (
     <>
 
@@ -24,9 +39,9 @@ return (
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
-                        <Link to="/homePage" className="nav-item nav-link active">Home</Link>
+                        <Link to="/homePage" className="nav-item nav-link ">Home</Link>
                         <Link to="/requests" className="nav-item nav-link">Active requests</Link>
-                        <Link to="/history" className="nav-item nav-link">History</Link>
+                        <Link to="/history" className="nav-item nav-link active">History</Link>
                         <Link to="/Contact" className="nav-item nav-link">About Us</Link>
                         <Link to="/" className="nav-item nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
@@ -40,30 +55,22 @@ return (
     <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
     </tr>
   </thead>
   <tbody>
+  {requests.map((request)=>{return(
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{request.patient.firstName}</td>
+      <td>{request.patient.lastName}</td>
+      <td>---</td>
+      <td>{ moment(request.createdAt).format("LL")}</td>
+      
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+   ) })}
   </tbody>
 </table>
 
