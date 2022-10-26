@@ -9,7 +9,7 @@ import { Link} from 'react-router-dom'
 
 function HomePage (){
 const location = useLocation()
-useEffect(()=>console.log(location))
+useEffect(()=>console.log("location home page",location.state))
 return (<>
 <div className="container-fluid sticky-top bg-white shadow-sm">
         <div className="container">
@@ -29,10 +29,10 @@ return (<>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
-                    <Link to="/homePage" className="nav-item nav-link active">Home</Link>
+                    <Link to="/homePage" state={location.state} className="nav-item nav-link active">Home</Link>
                         <Link to="/requests" state={location.state} className="nav-item nav-link ">Active requests</Link>
-                        <Link to="/history" className="nav-item nav-link ">History</Link>
-                        <Link to="/Contact" className="nav-item nav-link ">Contact Us</Link>
+                        <Link to="/history" state={location.state}  className="nav-item nav-link ">History</Link>
+                        <Link to="/Contact" state={location.state} className="nav-item nav-link ">Contact Us</Link>
                         <Link to="/" className="nav-item nav-link " onClick={()=>{axios.get("http://127.0.0.1:3001/hce/logout")}}><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
                 </div>

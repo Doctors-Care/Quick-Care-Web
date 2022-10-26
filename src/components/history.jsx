@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 // import axios from "axios";
 import image from "../9f657f1478c95c75f42b647b00fa7146.png";
-import {Link} from"react-router-dom";
+import {Link, useLocation} from"react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
 function History(){
+  const location = useLocation()
   const [requests, setRequests] = useState([])
   useEffect(() => {
     axios
-      .get("http://localhost:3000/request/getAll")
+      .get(`http://localhost:3001/request/getAll/${location.state.id}`)
       .then((result) => {
         
           setRequests(result.data)

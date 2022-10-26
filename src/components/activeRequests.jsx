@@ -5,11 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 function ActiveRequests() {
   const location = useLocation();
   const [request, setRequest] = useState([]);
-  const [accept, setAccept] = useState(false);
   useEffect(() => {
-    console.log("state", location.state);
+    
     axios
-      .get("http://localhost:3000/request/getAllActive")
+      .get(`http://localhost:3001/request/getAllActive`)
       .then((result) => {
         result.data.map((request1) => {
           setRequest((prevRequest) => {
@@ -21,9 +20,11 @@ function ActiveRequests() {
       .catch((err) => console.log(err));
   }, []);
 
-  const updateState = (state) => {
+  const acceptRequest = (id) => {
+    console.log("location Hce",location.state.id);
+    let hceID = location.state.id
     axios
-      .post(`http://localhost:3000/hce/getOne`, state)
+      .put(`http://localhost:3001/request/acceptrequest/${hceID}`, {id:id})
       .then((res) => console.log(res.data))
       .catch((error) => console.log(error));
   };
@@ -53,16 +54,16 @@ function ActiveRequests() {
             </button>
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <div className="navbar-nav ms-auto py-0">
-                <Link to="/homePage" className="nav-item nav-link">
+                <Link to="/homePage" state={location.state} className="nav-item nav-link">
                   Home
                 </Link>
-                <Link to="/requests" className="nav-item nav-link active">
+                <Link to="/requests" state={location.state} className="nav-item nav-link active">
                   Active requests
                 </Link>
-                <Link to="/history" className="nav-item nav-link">
+                <Link to="/history" state={location.state} className="nav-item nav-link">
                   History
                 </Link>
-                <Link to="/Contact" className="nav-item nav-link">
+                <Link to="/Contact" state={location.state} className="nav-item nav-link">
                   About Us
                 </Link>
                 <Link to="/" className="nav-item nav-link ">
@@ -94,22 +95,21 @@ function ActiveRequests() {
                   </h1>
                   <h1 className="m-0">Age: 29</h1>
                   <h1 className="m-0">Address: {element.patient.adress}</h1>
-                  {accept && <div className="error">Accepted </div>}
-                  {!accept && (
+                  
                     <div>
                       {" "}
                       <button
                         className="btn  btn-success"
                         onClick={(event) => {
                           event.preventDefault();
-                          setAccept(true);
+                          acceptRequest(element.id);
                         }}
                       >
                         Accept
                       </button>
                       <button className="btn  btn-danger">Reject</button>
                     </div>
-                  )}
+                
                 </div>
               </div>
             ))}
