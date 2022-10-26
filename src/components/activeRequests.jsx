@@ -9,7 +9,7 @@ function ActiveRequests() {
   useEffect(() => {
     console.log("state", location.state);
     axios
-      .get("http://localhost:3000/request/getAll")
+      .get("http://localhost:3000/request/getAllActive")
       .then((result) => {
         result.data.map((request1) => {
           setRequest((prevRequest) => {
