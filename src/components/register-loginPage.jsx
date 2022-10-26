@@ -13,7 +13,7 @@ import {
 }
 from 'mdb-react-ui-kit';
 import axios from "axios";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function LogInPage() {
 
   const [justifyActive, setJustifyActive] = useState('tab1');
@@ -39,7 +39,7 @@ function LogInPage() {
     .then((result)=> { 
       console.log(result)
 		 if (result.statusText === "Accepted") {
-			 navigate("/homePage",{state:account})
+			 navigate("/homePage",{state:result.data})
 			   }
 	
 			  else {setDenied(true) }
