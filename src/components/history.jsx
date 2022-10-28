@@ -39,10 +39,10 @@ return (
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
-                        <Link to="/homePage" className="nav-item nav-link ">Home</Link>
-                        <Link to="/requests" className="nav-item nav-link">Active requests</Link>
-                        <Link to="/history" className="nav-item nav-link active">History</Link>
-                        <Link to="/Contact" className="nav-item nav-link">About Us</Link>
+                        <Link to="/homePage" state={location.state} className="nav-item nav-link ">Home</Link>
+                        <Link to="/requests" state={location.state} className="nav-item nav-link">Active requests</Link>
+                        <Link to="/history" state={location.state} className="nav-item nav-link active">History</Link>
+                        <Link to="/Contact" state={location.state} className="nav-item nav-link">About Us</Link>
                         <Link to="/" className="nav-item nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
                 </div>

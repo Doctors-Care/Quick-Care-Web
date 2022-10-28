@@ -6,6 +6,7 @@ function ActiveRequests() {
   const location = useLocation();
   const [request, setRequest] = useState([]);
   useEffect(() => {
+    console.log("hethiii",location)
     
     axios
       .get(`http://localhost:3001/request/getAllActive`)
@@ -21,7 +22,6 @@ function ActiveRequests() {
   }, []);
 
   const acceptRequest = (id) => {
-    console.log("location Hce",location.state.id);
     let hceID = location.state.id
     axios
       .put(`http://localhost:3001/request/acceptrequest/${hceID}`, {id:id})
@@ -86,15 +86,21 @@ function ActiveRequests() {
             {request.map((element, index) => (
               <div className="col-lg-4 col-md-6">
                 <div className="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                  <div className="service-icon mb-4">
-                    <i className="fa fa-2x fa-ambulance text-white"></i>
-                  </div>
+               
                   <h4 className="mb-3 alert alert-danger">Emergency !</h4>
                   <h1 className="m-0">
                     Name: {element.patient.firstName} {element.patient.lastName}
                   </h1>
-                  <h1 className="m-0">Age: 29</h1>
-                  <h1 className="m-0">Address: {element.patient.adress}</h1>
+                  <iframe class="position-relative w-100 h-200"
+                    width="300" 
+                    height="170" 
+                    
+                    scrolling="yes" 
+                    marginheight="0" 
+                    marginwidth="0"
+                        src={`https://maps.google.com/maps?q=${element.latitude},${element.longitude}&hl=fr;&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                        frameborder="0" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
                   
                     <div>
                       {" "}
@@ -107,7 +113,7 @@ function ActiveRequests() {
                       >
                         Accept
                       </button>
-                      <button className="btn  btn-danger">Reject</button>
+                    
                     </div>
                 
                 </div>
