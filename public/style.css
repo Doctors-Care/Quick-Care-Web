@@ -30,7 +30,7 @@
 }
 
 .btn {
-    font-weight: 700;
+
     transition: .5s;
 }
 
@@ -266,4 +266,20 @@
 .testimonial-carousel .owl-item img {
     width: 150px;
     height: 150px;
+}
+.me-2{
+    background-color: #008CBA; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width:260px;
+    border-radius: 20px;
+}
+.me-2:active {
+    width: 260px !important;
+    background-color: #008CaA; 
 }

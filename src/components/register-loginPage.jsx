@@ -120,10 +120,10 @@ let register = (account) => {
 						</div>
           <div className="d-flex justify-content-between mx-4 mb-4">
             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            <a href="!#">Forgot password?</a>
+            <a href="!#">Forgot password?</a> 
           </div>
 
-          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(); loggingIn(state)})}>Sign in</MDBBtn>
+          <button className='me-2'  size='lg' aria-pressed="true"  onClick={((e) => {e.preventDefault(); loggingIn(state)})}>Sign in</button>
           
 
         </MDBTabsPane>
@@ -172,7 +172,7 @@ let register = (account) => {
 
           </div>
 
-          <MDBBtn className="mb-4 w-100" onClick={((e) => {e.preventDefault(); register(state)})}>Sign up</MDBBtn>
+          <MDBBtn  className='me-2'  size='lg' onClick={((e) => {e.preventDefault(); register(state)})}>Sign up</MDBBtn>
 
         </MDBTabsPane>
 

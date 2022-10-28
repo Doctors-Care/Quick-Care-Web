@@ -1,8 +1,9 @@
 import React from "react";
 // import axios from "axios";
 import image from "../9f657f1478c95c75f42b647b00fa7146.png";
-import {Link} from "react-router-dom"
-function contactUs(){
+import {Link, useLocation} from "react-router-dom"
+function ContactUs(){
+    const location = useLocation()
 return(
     <>
     <div className="container-fluid sticky-top bg-white shadow-sm">
@@ -23,10 +24,10 @@ return(
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
-                    <Link to="/homePage" className="nav-item nav-link">Home</Link>
-                        <Link to="/requests" className="nav-item nav-link">Active requests</Link>
-                        <Link to="/history" className="nav-item nav-link">History</Link>
-                        <Link to="/Contact" className="nav-item nav-link active">Contact Us</Link>
+                    <Link to="/homePage" state={location.state} className="nav-item nav-link">Home</Link>
+                        <Link to="/requests" state={location.state} className="nav-item nav-link">Active requests</Link>
+                        <Link to="/history" state={location.state} className="nav-item nav-link">History</Link>
+                        <Link to="/Contact" state={location.state} className="nav-item nav-link active">Contact Us</Link>
                         <Link to="/" className="nav-item nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</Link>
                     </div>
                 </div>
@@ -70,7 +71,7 @@ return(
             <div class="col-12" >
                 <div class="position-relative h-200">
                     <iframe class="position-relative w-100 h-200"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                        src="https://maps.google.com/maps?q=36.894284,10.186790&hl=fr;&t=&z=13&ie=UTF8&iwloc=&output=embed"
                         frameborder="0" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
                 </div>
@@ -106,4 +107,4 @@ return(
 </>
 )
 }
-export default contactUs;
+export default ContactUs;
