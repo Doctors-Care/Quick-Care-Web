@@ -66,10 +66,10 @@ let register = (account) => {
 
   return (
     <>
-	<div>
-	<h1>Quick Care..</h1>
+	<div id='titleForLOgin'>
+	<p class="text-uppercase fs-1 text-center text-dark" >Quick Care..</p>
 	<br/>
-	<h2>is always quicker to save lives!</h2>
+  <p class="text-uppercase fs-3 text-center text-dark" >is always quicker to save lives!</p>
    <div className='login'> 
 	<MDBContainer className="p-3 my-5 d-flex flex-column w-50">
 
