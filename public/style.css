@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 .body {
-    background-image:url("./medical-health-blue-green-cross-260nw-1718005360.jpg") ;
+    background-image:url("https://th.bing.com/th/id/R.de0b79c5f5825f6ccaa597b3e13d47d8?rik=zLzrF44akYYjSg&riu=http%3a%2f%2fwww.pptgrounds.com%2fwp-content%2fuploads%2f2016%2f03%2fCardiogram-on-a-blue-backgrounds.jpg&ehk=d3dQaJ645WZsb0V082SsbW9r3pX4t1hRsnj5F0eoNrY%3d&risl=&pid=ImgRaw&r=0") ;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -282,4 +282,8 @@
 .me-2:active {
     width: 260px !important;
     background-color: #008CaA; 
+}
+#titleForLOgin{
+    justify-content: center;
+    align-items: center;
 }
